@@ -204,7 +204,6 @@
                                 <p class="price" data-price>$199.99</p>
                                 <label data-category>Laptops</label>
 
-                                <a href="#" data-detail class="btn btn-link"> Details</a>
                                 <button data-product="" data-url="" class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
                             </div>
                         </div>

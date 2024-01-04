@@ -66,7 +66,7 @@ function renderTemplateProducts(
         .setAttribute("data-url", url + "/add/cart/" + idProduct);
     clone.querySelector("[data-image]").setAttribute("src", url_image);
     clone.querySelector("[data-name]").innerHTML = nameProduct;
-    clone.querySelector("[data-price]").setAttribute("S/. " + priceProduct);
+    clone.querySelector("[data-price]").innerHTML = "S/. " + priceProduct;
     clone.querySelector("[data-category]").innerHTML = categoryProduct;
 
     $("#body-products").append(clone);
