@@ -94,10 +94,10 @@
     <script src="{{ asset('intranet/assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/jquery.dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('intranet/assets/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/buttons.flash.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('intranet/assets/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('intranet/assets/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('js/shop/delete.js') }}"></script>
 @endsection

@@ -38,7 +38,7 @@
         <i class="icon-2x fa fa-plus"></i> Nueva Producto
     </a>
     <hr>
-    <table class="table">
+    <table class="table" id="dynamic-table">
         <thead>
         <tr>
             <th>#</th>
@@ -105,4 +105,14 @@
 
 @section('scripts')
     <script src="{{ asset('js/product/index.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('intranet/assets/js/jquery.dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('intranet/assets/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('intranet/assets/js/dataTables.select.min.js') }}"></script>  
+
+    <script>
+        new DataTable('#dynamic-table');
+    </script>
+    
 @endsection

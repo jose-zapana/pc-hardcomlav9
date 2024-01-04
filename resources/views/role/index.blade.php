@@ -1,7 +1,7 @@
 @extends('layouts.appDashboard')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('intranet/assets/css/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('intranet/assets/css/select2.min.css') }}" />  
 @endsection
 
 @section('openModAccess')
@@ -38,7 +38,7 @@
         <i class="icon-2x fa fa-plus"></i> Nuevo Role
     </a>
     <hr>
-    <table class="table">
+    <table class="table" id="dynamic-table">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -182,6 +182,20 @@
 @endsection
 
 @section('scripts')
+<script>
+
+</script>
     <script src="{{ asset('intranet/assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('js/access/role.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('intranet/assets/js/jquery.dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('intranet/assets/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('intranet/assets/js/dataTables.select.min.js') }}"></script>  
+
+    <script>
+        new DataTable('#dynamic-table');
+    </script>
+    
+
 @endsection
