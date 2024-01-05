@@ -22,6 +22,8 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- inline scripts related to this page -->
 
+
+
 <script>
     Echo.private('order-placed')
         .listen('OrderPlaced', (e) => {
