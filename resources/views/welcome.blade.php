@@ -273,8 +273,5 @@
 <script src="{{ asset('landing/assets/js/core.js') }}"></script>
 <script src="{{ asset('landing/assets/js/carousel.js') }}"></script>
 <script src="{{ asset('landing/assets/js/carousel-recommendation.js') }}"></script>
-
-
-
 </body>
 </html>
