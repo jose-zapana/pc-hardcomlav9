@@ -176,6 +176,9 @@
                 <hr class="offset-lg visible-xs">
             </div>
         </div>
-    </div>
+    </div>`
+
+    <!-- Boton WhatsApp -->
+<script src="{{ asset('landing/assets/js/fgp_wa.js') }}"></script>
 </footer>
 <!-- FOOTER PAGE -->

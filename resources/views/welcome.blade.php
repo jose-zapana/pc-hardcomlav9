@@ -276,9 +276,5 @@
 
 
 
-
-
-<script src="{{ asset('landing/assets/js/fgp_wa.js') }}"></script>
-
 </body>
 </html>
