@@ -29,19 +29,17 @@
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="{{ asset('intranet/assets/css/ace-part2.min.css') }} " class="ace-main-stylesheet" />
     <![endif]-->
-    <link rel="stylesheet" href="{{ asset('intranet/assets/css/ace-skins.min.css') }} " />
-    <link rel="stylesheet" href="{{ asset('intranet/assets/css/ace-rtl.min.css') }} " />
-
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="{{ asset('intranet/assets/css/ace-ie.min.css') }} " />
     <![endif]-->
 
-    <!-- inline styles related to this page -->
+    <!-- CSS STYKE -->
+    <link rel="stylesheet" href="{{ asset('toast/jquery.toast.min.css') }}">
 
     <!-- ace settings handler -->
-    <script src="{{ asset('intranet/assets/js/ace-extra.min.js') }} "></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
 
     <!--[if lte IE 8]>
     <script src="{{ asset('intranet/assets/js/html5shiv.min.js') }} "></script>

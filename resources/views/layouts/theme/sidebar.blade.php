@@ -87,7 +87,7 @@
                 </li>
 
                 <li class=" @yield('activeRestoreCategory') ">
-                    <a href="#">
+                    <a href="{{ route('category.trashed') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Restaurar Categorías
                     </a>
@@ -154,7 +154,7 @@
                     <b class="arrow"></b>
                 </li>
                 <li class=" @yield('activeRestoreMethodShip') ">
-                    <a href="#">
+                    <a href="{{ route('method_ship.trashed') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Restaurar Envios
                     </a>

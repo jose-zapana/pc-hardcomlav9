@@ -18,7 +18,7 @@
                     <div id="dynamic-table_filter" class="dataTables_filter">
                         <ul class="btn btn-white btn-info btn-bold" style="list-style: none;">
                             <li>
-                                <a href="javascript:void(0)" class="tabmenu bg-dark" data-toggle="modal" data-target="#theModal">
+                                <a class="tabmenu bg-dark" data-toggle="modal" data-target="#theModal">
                                     <i class="menu-icon fa fa-pencil-square-o blue"></i>
                                     Agregar
                                 </a>

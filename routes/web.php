@@ -19,6 +19,7 @@ use App\Http\Controllers\MethodShippingController;
 use App\Http\Controllers\MethodsPaymentController;
 use App\Http\Controllers\CustomerAddressController;
 use App\Http\Livewire\Banners;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,13 @@ Route::middleware('auth')->group(function () {
         Route::post('category/destroy', [CategoryController::class, 'destroy'])->name('category.destroy')
             ->middleware('permission:destroy_store');
 
+        // Trashed: Devuelve las tiendas eliminadas
+        Route::get('categorias/eliminadas', [CategoryController::class, 'trashed'])->name('category.trashed')
+            ->middleware('permission:restore_store');
+        // Restore: Restaurar una tienda
+        Route::post('category/restore', [CategoryController::class, 'restore'])->name('category.restore')
+            ->middleware('permission:restore_store');
+
         //Todo: Rutas modulo Direcciones
         Route::get('direcciones', [CustomerAddressController::class, 'index'])->name('address.index')
             ->middleware('permission:create_store');
@@ -130,6 +138,13 @@ Route::middleware('auth')->group(function () {
             ->middleware('permission:update_shipping');
         Route::post('method_ship/destroy', [MethodShippingController::class, 'destroy'])->name('method_ship.destroy')
             ->middleware('permission:delete_shipping');
+
+        // Trashed: Devuelve los envios eliminadas
+        Route::get('envios/eliminados', [MethodShippingController::class, 'trashed'])->name('method_ship.trashed')
+            ->middleware('permission:restore_shipping');
+        // Restore: Restaurar envios
+        Route::post('method_ship/restore', [MethodShippingController::class, 'restore'])->name('method_ship.restore')
+            ->middleware('permission:restore_shipping');
 
         // TODO: Rutas módulo Accesos
         Route::get('usuarios', [UserController::class, 'index'])->name('user.index')
@@ -182,7 +197,6 @@ Route::middleware('auth')->group(function () {
         // Destroy: Eliminar el producto
         Route::post('product/destroy', [ProductController::class, 'destroy'])->name('product.destroy')
             ->middleware('permission:destroy_store');
-
         Route::get('/obtener/infos/{idProduct}', [ProductController::class, 'getInfo'])
             ->middleware('permission:edit_store');
         Route::get('/obtener/images/{idProduct}', [ProductController::class, 'getImages'])

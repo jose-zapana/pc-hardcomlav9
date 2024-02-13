@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\DeleteCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -41,7 +42,7 @@ class CategoryController extends Controller
             $category->image = 'no_image.jpg';
             $category->save();
         } else {
-            $path = public_path().'/images/category/';
+            $path = public_path() . '/images/category/';
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = $category->id . '.' . $extension;
             $request->file('image')->move($path, $filename);
@@ -50,7 +51,6 @@ class CategoryController extends Controller
         }
 
         return response()->json(['message' => 'Categoría guardada con éxito.'], 200);
-
     }
 
     public function show(Category $category)
@@ -80,9 +80,8 @@ class CategoryController extends Controller
                 $category->image = 'no_image.jpg';
                 $category->save();
             }
-
         } else {
-            $path = public_path().'/images/category/';
+            $path = public_path() . '/images/category/';
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = $category->id . '.' . $extension;
             $request->file('image')->move($path, $filename);
@@ -91,7 +90,6 @@ class CategoryController extends Controller
         }
 
         return response()->json(['message' => 'Categoría modificada con éxito.'], 200);
-
     }
 
     public function destroy(DeleteCategoryRequest $request)
@@ -103,6 +101,32 @@ class CategoryController extends Controller
         $category->delete();
 
         return response()->json(['message' => 'Categoría eliminada con éxito.'], 200);
+    }
 
+    public function trashed()
+    {
+        $categories = Category::onlyTrashed()->get();
+        return view('category.restore', compact('categories'));
+    }
+
+    public function restore(Request $request)
+    {
+        $rules = [
+            'id' => 'required|exists:categories,id',
+        ];
+
+        $messages = [
+            'id.required' => 'No se ha recibido el identificador de la categoria.',
+            'id.exists' => 'La categoria no existe en la base de datos.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validator->fails()) {
+            $category = Category::onlyTrashed()->where('id', $request->get('id'))
+                ->restore();
+        }
+
+        return response()->json($validator->messages(), 200);
     }
 }

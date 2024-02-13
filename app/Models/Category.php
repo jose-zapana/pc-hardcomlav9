@@ -23,5 +23,4 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Product', 'category_products')->withPivot('product_id');
     }
-
 }
