@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MethodShipping;
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests\DeleteMethodShipRequest;
 use App\Http\Requests\StoreMethodShipRequest;
@@ -19,13 +20,13 @@ class MethodShippingController extends Controller
      */
     public function index()
     {
-    
+
         // 
         $ship = MethodShipping::with('shop')->get();
         $shops = Shop::get(['id', 'name']);
-         //dd($ship);
+        //dd($ship);
 
-        return view('method_ship.index',compact('shops','ship'));
+        return view('method_ship.index', compact('shops', 'ship'));
     }
 
     /**
@@ -58,7 +59,7 @@ class MethodShippingController extends Controller
             $ship->image = 'no_image.jpg';
             $ship->save();
         } else {
-            $path = public_path().'/images/method_ship/';
+            $path = public_path() . '/images/method_ship/';
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = $ship->id . '.' . $extension;
             $request->file('image')->move($path, $filename);
@@ -67,7 +68,6 @@ class MethodShippingController extends Controller
         }
 
         return response()->json(['message' => 'Envio guardado con éxito.'], 200);
-
     }
 
     /**
@@ -99,7 +99,7 @@ class MethodShippingController extends Controller
      * @param  \App\MethodShipping  $methodShipping
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMethodShipRequest $request )
+    public function update(UpdateMethodShipRequest $request)
     {
         //
         $validated = $request->validated();
@@ -116,9 +116,8 @@ class MethodShippingController extends Controller
                 $ships->image = 'no_image.jpg';
                 $ships->save();
             }
-
         } else {
-            $path = public_path().'/images/method_ship/';
+            $path = public_path() . '/images/method_ship/';
             $extension = $request->file('image')->getClientOriginalExtension();
             $filename = $ships->id . '.' . $extension;
             $request->file('image')->move($path, $filename);
@@ -145,6 +144,32 @@ class MethodShippingController extends Controller
         $ships->delete();
 
         return response()->json(['message' => 'Envio eliminado con éxito.'], 200);
+    }
 
+    public function trashed()
+    {
+        $ships = MethodShipping::onlyTrashed()->get();
+        return view('ship.restore', compact('ships'));
+    }
+
+    public function restore(Request $request)
+    {
+        $rules = [
+            'id' => 'required|exists:ships,id',
+        ];
+
+        $messages = [
+            'id.required' => 'No se ha recibido el identificador del envio.',
+            'id.exists' => 'El envio no existe en la base de datos.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validator->fails()) {
+            $ship = MethodShipping::onlyTrashed()->where('id', $request->get('id'))
+                ->restore();
+        }
+
+        return response()->json($validator->messages(), 200);
     }
 }
